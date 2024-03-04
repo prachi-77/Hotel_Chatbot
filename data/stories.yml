@@ -1,0 +1,106 @@
+version: "3.1"
+
+stories:
+
+
+# story - user wants to book a room
+# - story : book a room
+#   steps:
+#   - intent: greet
+#   - action: utter_how_can_i_help
+#   - intent: BookRoom
+#     # entities:
+#     # - name :"John"
+#   - action: utter_ask_details
+#   - intent: ProvideDetails
+#     entities:
+#     - name : "Prachi" 
+#     - quantity : "2"
+#     - date : "23/12/2022"
+#     - phone : "7304789031"
+#   - action: utter_room_type
+#   - intent: SelectRoomType
+#     entities:
+#     - room_type : "deluxe" 
+#   - action: utter_breakfast_option
+#   - intent: SelectBreakfastOption
+#   - action: utter_payment_mode
+#   - intent: SelectPaymentMethod  
+#   - action: utter_confirm_booking
+#   - intent: thanks
+#   - action : utter_goodbye
+
+# user seeks cancellation
+- story : booking cancellation
+  steps:
+  - intent: greet
+  - action: utter_how_can_i_help
+  - intent: CancelBooking
+  - action: utter_cancellation_details
+  - intent: ProvideDetails
+    entities:
+    - name : "John"
+    - booking_id : "#1234"
+  - action: utter_confirm_cancellation
+  - intent: thanks
+  - action : utter_goodbye
+
+#user seeks general information
+- story : general information
+  steps:
+  - intent: greet
+  - action: utter_how_can_i_help
+  - intent: GeneralInformation
+  - action: utter_hotel_info
+  - intent: thanks
+  - action : utter_goodbye
+
+#user seeks general services
+- story : general services
+  steps:
+  - intent: greet
+  - action: utter_how_can_i_help
+  - intent: EnquireAboutServices
+  - action: utter_hotel_info
+  - intent: thanks
+  - action : utter_goodbye
+# - story: interactive_story_1
+#   steps:
+#   - intent: greet
+#   - action: utter_how_can_i_help
+#   - action: utter_how_can_i_help
+#   - intent: BookRoom
+#   - action: action_default_fallback
+#   - intent: BookRoom
+#   - action: action_default_fallback
+#   - action: utter_ask_details
+
+- story: interactive_story_2
+  steps:
+  - intent: greet
+  - action: utter_how_can_i_help
+  - intent: BookRoom
+  - action: utter_ask_details
+  - intent: ProvideDetails
+    entities:
+    - name: Palak
+    - quantity: '3'
+    - phone: '3456785643'
+    - date: 12/12/2025
+  - slot_was_set:
+    - name: Palak
+  - action: utter_room_type
+  - intent: SelectRoomType
+    entities:
+    - room_type: single
+  - slot_was_set:
+    - room_type: single
+  - action: utter_breakfast_option
+  - intent: SelectBreakfastOption
+  - action: utter_payment_mode
+  - intent: SelectPaymentMethod
+    entities:
+    - payment_mode: credit card
+  - action: utter_confirm_booking
+  - intent: thanks
+  - action : utter_goodbye

@@ -1,0 +1,192 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+    - Hey
+- intent: goodbye
+  examples: |
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+    - Goodbye
+    - See you later
+    - Bye bot
+    - Goodbye friend
+    - bye for now
+    - catch you later
+    - gotta go
+    - See you
+    - goodnight
+    - i'm off
+    - see you later alligator
+    - we'll speak soon
+- intent: BotIdentity
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+    - who are you?
+- intent: thanks
+  examples: |
+    - Thank you for help.
+    - That helps!
+    - Appreciated.
+    - Thanks a lot.
+    - Thank You.
+    - thank you
+    - Thank you so much for your assistance!
+- intent: ProvideDetails
+  examples: |
+    - [Prachi](name)
+    - [Palak](name)
+    - [Sam](name)
+    - [Alex](name)
+    - [Chad](name)
+    - [Ryan](name)
+    - [Ram](name)
+    - [9820066059](phone)
+    - [1234786543](phone)
+    - [2](quantity)
+    - [1](quantity)
+    - [4](quantity)
+    - [three](quantity)
+    - [04/03/2024](date)
+    - [10/07/2024](date)
+    - [07/11/2024](date)
+    - [10/10/2024](date)
+    - [1 day](number_of_nights)
+    - [4 days](number_of_nights)
+    - [3 days](number_of_nights)
+    - [#12](booking_id)
+    - [#1234](booking_id)
+    - [#3434](booking_id)
+    - [#77](booking_id)
+    - My name is [Raj](name). I'd like to book a room for [2 days](number_of_nights) at your hotel.My phone number is [4536576897](phone).
+    - [Palak](name), [3](quantity) people, [3456785643](phone), [12/12/2025](date)
+- intent: BookRoom
+  examples: |
+    - I'd like to book a room for [2 days](number_of_nights) at your hotel.
+    - Can you help me reserve a room for [12/04/2024](date) at your hotel?
+    - I'm interested in staying at your hotel from [01/01/2025](date) to [03/01/2025](date).
+    - What are the available rooms for [31/12/2026](date) at your hotel?"
+    - I need a room for [2](quantity) people from [25/12/2025](date) to [05/01/2026](date).
+    - Do you have any vacancies for [11/11/2011](date)?
+    - I'm planning a trip and would like to book a room at your hotel for [02/06/2023](date).
+    - Could you assist me with making a reservation for a room?
+    - I'd like to check the availability for a room from [25/09/2020](date) to [27/09/2020](date).
+    - What types of rooms do you have available for [07/07/1997](date)?
+    - I would like to book a room at your hotel.
+- intent: SelectRoomType
+  examples: |
+    - I'd like to select [deluxe](room_type) room.
+    - I'd like to select [single](room_type) room.
+    - I'd like to select [suite](room_type) room.
+    - [deluxe](room_type)
+    - [single](room_type)
+    - [suite](room_type)
+    - [single](room_type)
+- intent: CancelBooking
+  examples: |
+    - I need to cancel my reservation.
+    - I would like to cancel my booking.
+    - Is it possible to cancel my booking for [07/07/1997](date)?
+    - I'd like to cancel the room I reserved under the name [Lisa](name).
+    - Can you help me with the cancellation of my reservation under [Oreo](name?
+    - I need to change my plans, so I'd like to cancel my room reservation.
+    - Is there a process for canceling a reservation? I have a booking for [09/12/2022](date).
+    - I won't be able to make it for my reservation on [15/02/2019](date). Can I cancel it?
+    - What are the steps involved in canceling a room reservation?
+    - Due to unforeseen circumstances, I need to cancel my booking. It's under [Alex](name).
+- intent: SelectPaymentMethod
+  examples: |
+    - Credit card
+    - credit card
+    - debit card
+    - Debit card
+    - Gpay
+    - PayPal
+    - I would like to pay with [debit card](payment_mode).
+    - I will make payment using my [credit card](payment_mode).
+    - I would like to use [PayPal](payment_mode).
+    - Please charge the room expenses to my [credit card](payment_mode) on file.
+    - I would like to use [Gpay](payment_mode).
+    - I prefer to pay in [cash](payment_mode) when I arrive for my reservation.
+    - I would like to pay with my [credit card](payment_mode).
+- intent: SelectBreakfastOption
+  examples: |
+    - With breakfast.
+    - Without breakfast.
+    - Include it.
+    - Don't' include.
+    - No need.
+    - Nope.
+    - Yes,please !
+    - Yes.
+    - No.
+    - Yes
+    - No
+    - I would like to include breakfast in my booking, please.
+    - Could you confirm if breakfast is included in the booking package?
+    - Is breakfast part of the booking, or is it an optional add-on?
+    - I'd prefer a booking package that includes breakfast.
+    - Can you provide information on whether breakfast is complimentary with the reservation?
+    - I want to make sure that breakfast is added to my booking.
+    - Is there an option to include breakfast in the room rate?
+    - I'd like to opt for a booking that does not include breakfast.
+    - Could you check if the room rate I'm considering covers breakfast?
+    - I prefer a package without breakfast included. Is that possible?
+- intent: GeneralInformation
+  examples: |
+    - What are the available amenities at your hotel?
+    - Can you help me with available facilities at your hotel?
+    - Can you provide information about the hotel's location?
+    - Where is the hotel situated, and are there nearby attractions?
+    - What are the check-in and check-out times for the hotel?
+    - Could you please share details about the hotel's check-in and check-out procedures?
+    - What facilities are available at the hotel for guests?
+    - Tell me about the amenities offered at your hotel.
+    - Can you provide information on parking facilities at the hotel?
+    - What time is the check-in available, and when is check-out expected?
+    - I'd like to know more about the surrounding area of the hotel. Any recommendations?
+    - Are there any special services or facilities for guests with specific needs or preferences?
+- intent: EnquireAboutServices
+  examples: |
+    - Do you have spa at your hotel?
+    - Can you help me with available services at your hotel?
+    - What services do you offer?
+    - Do you offer spa?
+    - Do you have a chinese restaurant?
+    - Do you have gym?
+    - What are the available cusines at your restaurant?
+    - Do you have a swimming pool?
+    - Could you provide information about the dining options available at the hotel?
+    - Can you tell me about the restaurants or cafes on the hotel premises?
+    - I'm interested in the spa services. What treatments are offered, and what are the rates?
+    - Is there a swimming pool at the hotel? What are the operating hours?
+    - Are there any fitness facilities or a gym available for guests?
+    - Tell me about the recreational facilities, like gaming zones or entertainment areas.
+    - What types of events or activities are hosted by the hotel for guests?
+    - Could you provide details about the wellness services, like yoga classes or meditation sessions?
+    - Is there a concierge service available to assist with local recommendations and bookings?
+    - I'd like to know more about the leisure options, such as any sports facilities or outdoor activities.

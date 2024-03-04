@@ -1,0 +1,10 @@
+[
+  {
+    "text": "no",
+    "intent": "deny",
+    "intent_prediction": {
+      "name": "SelectBreakfastOption",
+      "confidence": 0.6581361293792725
+    }
+  }
+]

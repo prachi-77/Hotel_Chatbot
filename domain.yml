@@ -1,0 +1,84 @@
+version: '3.1'
+intents:
+- BookRoom
+- BotIdentity
+- CancelBooking
+- EnquireAboutServices
+- GeneralInformation
+- ProvideDetails
+- SelectBreakfastOption
+- SelectPaymentMethod
+- SelectRoomType
+- goodbye
+- greet
+- thanks
+entities:
+- phone
+- date
+- payment_mode
+- room_type
+- quantity
+- name
+- number_of_nights
+- booking_id
+slots:
+  name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: name
+  room_type:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: room_type
+actions:
+- utter_goodbye
+- utter_breakfast_option
+- utter_room_type
+- utter_payment_mode
+- utter_ask_details
+- utter_how_can_i_help
+- utter_confirm_booking
+- utter_greet
+- utter_did_that_help
+- utter_iamabot
+- utter_cancellation_details
+- utter_confirm_cancellation
+- utter_hotel_info
+responses:
+  utter_did_that_help:
+  - text: Did that help you?
+  utter_happy:
+  - text: Great, carry on!
+  utter_goodbye:
+  - text: Bye! Have a Good Day :)
+  utter_iamabot:
+  - text: I am a bot, powered by Rasa.
+  utter_how_can_i_help:
+  - text: Hi my name is GrandGuideBot, I can help you book your stay.
+  - text: Hi I am a hotel booking chatbot, how may I help you?
+  utter_ask_details:
+  - text: I will need your Name, Phone number, number of people, check-in and check-out dates in order to do a booking.
+  utter_room_type:
+  - text: Thanks for the information {name}. Kindly select the room type. We have - deluxe, single and suite.
+  utter_breakfast_option:
+  - text: Would you like to have breakfast included in your package?
+  utter_payment_mode:
+  - text: Kindly select your mode of payment. We support - credit and debit cards, PayPal, Gpay and cash.
+  utter_cancellation_details:
+  - text: In order to cancel your booking, I will need you name and booking id.
+  utter_confirm_cancellation:
+  - text: Hey {name}, We have cancelled your booking!
+  utter_confirm_booking:
+  - text: Hey {name}, Your {room_type} room booking is confirmed.!
+  utter_hotel_info:
+  - text: |-
+      Greetings from Grand Horizon in the heart of Delhi!
+      We are delighted to welcome you to our hotel located in the capital city of India, Delhi. Our prime location offers easy access to various tourist attractions, including the iconic Red Fort, majestic Qutub Minar, the historic Jantar Mantar, and many more.
+      For your convenience, we are just 10 km away from the Indira Gandhi International Airport, making your travel to and from the hotel a breeze. The nearest railway station is CST, providing you with convenient connectivity.
+      Our check-in time is at 12 pm, allowing you to settle in comfortably. For a relaxed stay, we offer a common swimming pool, perfect for a refreshing dip. Additionally, our spa is open from 10 am to 6 pm, where you can indulge in rejuvenating treatments and unwind after a day of exploration. Sports enthusiasts will be pleased to find our basketball court on the premises.
+      Please note that our checkout time is at 11 am to ensure a smooth transition for our valued guests.
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

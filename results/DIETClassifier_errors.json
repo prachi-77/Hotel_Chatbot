@@ -1,0 +1,108 @@
+[
+  {
+    "text": "9820066059",
+    "entities": [
+      {
+        "start": 0,
+        "end": 10,
+        "value": "9820066059",
+        "entity": "phone"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "quantity",
+        "start": 0,
+        "end": 10,
+        "confidence_entity": 0.6251165866851807,
+        "value": "9820066059",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "1234786543",
+    "entities": [
+      {
+        "start": 0,
+        "end": 10,
+        "value": "1234786543",
+        "entity": "phone"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "quantity",
+        "start": 0,
+        "end": 10,
+        "confidence_entity": 0.6251165866851807,
+        "value": "1234786543",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I need a room for 2 people from 25/12/2025 to 05/01/2026.",
+    "entities": [
+      {
+        "start": 18,
+        "end": 19,
+        "value": "2",
+        "entity": "quantity"
+      },
+      {
+        "start": 32,
+        "end": 42,
+        "value": "25/12/2025",
+        "entity": "date"
+      },
+      {
+        "start": 46,
+        "end": 56,
+        "value": "05/01/2026",
+        "entity": "date"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "number_of_nights",
+        "start": 18,
+        "end": 19,
+        "confidence_entity": 0.5037320256233215,
+        "value": "2",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "date",
+        "start": 32,
+        "end": 42,
+        "confidence_entity": 0.9989967942237854,
+        "value": "25/12/2025",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "date",
+        "start": 46,
+        "end": 56,
+        "confidence_entity": 0.9991157650947571,
+        "value": "05/01/2026",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  }
+]
