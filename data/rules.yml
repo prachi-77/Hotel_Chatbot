@@ -11,3 +11,20 @@ rules:
   steps:
   - intent: bot_challenge
   - action: utter_iamabot
+
+# - rule: Activate User Info Form
+#   steps:
+#   - intent: BookRoom
+#   - action: simple_user_form
+#   - active_loop: simple_user_form
+
+# - rule: Submit User Form
+#   condition:
+#   - active_loop: simple_user_form
+#   steps:
+#   - action: simple_user_form
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_submit
+#   - action: utter_user_slots

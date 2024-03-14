@@ -75,32 +75,85 @@ stories:
 #   - action: action_default_fallback
 #   - action: utter_ask_details
 
-- story: interactive_story_2
+# - story: interactive_story_2
+#   steps:
+#   - intent: greet
+#   - action: utter_how_can_i_help
+#   - intent: BookRoom
+#   - action: simple_user_form
+#   - active_loop: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - name: James
+#   - action: utter_ask_details
+#   - intent: ProvideDetails
+#     entities:
+#     - name: Palak
+#     - quantity: '3'
+#     - phone: '3456785643'
+#     - date: 12/12/2025
+#   - slot_was_set:
+#     - quantity: '3'
+#   - action: utter_room_type
+#   - intent: SelectRoomType
+#     entities:
+#     - room_type: single
+#   - slot_was_set:
+#     - room_type: single
+  # - action: utter_breakfast_option
+  # - intent: SelectBreakfastOption
+  # - action: utter_payment_mode
+  # - intent: SelectPaymentMethod
+  #   entities:
+  #   - payment_mode: credit card
+  # - action: utter_confirm_booking
+  # - intent: thanks
+  # - action : utter_goodbye
+
+# - story: Collect user's name
+#   steps:
+#     - intent: greet
+#     - action: utter_how_can_i_help
+#     - intent: BookRoom
+#     - action: utter_ask_user_name
+#     - active_loop: simple_user_form
+#     - action: simple_user_form
+#     - active_loop: null
+#     - action: utter_slots_values
+#     - action: utter_confirm_booking
+#     - intent: thanks
+#     - action : utter_goodbye
+
+
+- story: Book a Room
+  steps:
+    - intent: greet
+    - action: utter_how_can_i_help
+    - intent: BookRoom
+    - action: simple_user_form
+    - active_loop: simple_user_form
+    - slot_was_set:
+      - requested_slot: payment_mode
+    # - intent: SelectPaymentMethod
+    # - action: action_deactivate_loop
+    # - active_loop: null
+    - action: utter_confirm_booking
+    - intent: thanks
+    - action: utter_goodbye
+
+- story: Submit form when name is filled
   steps:
   - intent: greet
   - action: utter_how_can_i_help
-  - intent: BookRoom
-  - action: utter_ask_details
-  - intent: ProvideDetails
-    entities:
-    - name: Palak
-    - quantity: '3'
-    - phone: '3456785643'
-    - date: 12/12/2025
+  - intent: ProvideName  # Assuming this intent is triggered when the user provides details
+  - action: simple_test_form
+  - active_loop: simple_test_form
   - slot_was_set:
-    - name: Palak
-  - action: utter_room_type
-  - intent: SelectRoomType
-    entities:
-    - room_type: single
-  - slot_was_set:
-    - room_type: single
-  - action: utter_breakfast_option
-  - intent: SelectBreakfastOption
-  - action: utter_payment_mode
-  - intent: SelectPaymentMethod
-    entities:
-    - payment_mode: credit card
-  - action: utter_confirm_booking
+    - name: "John"  # Replace "John" with the desired name
+  - action: simple_test_form  # You can skip this action if you want to submit directly
+  - active_loop: null
+  - action: utter_test
   - intent: thanks
-  - action : utter_goodbye
+  - action: utter_goodbye
+

@@ -12,15 +12,21 @@ intents:
 - goodbye
 - greet
 - thanks
+- DenyBreakfastOption
+- ProvideName
+
 entities:
 - phone
-- date
+- check_in_date
+- check_out_date
 - payment_mode
 - room_type
-- quantity
+- num_people
 - name
 - number_of_nights
 - booking_id
+- breakfast_option
+
 slots:
   name:
     type: text
@@ -32,20 +38,86 @@ slots:
     mappings:
     - type: from_entity
       entity: room_type
+  # breakfast_option:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: breakfast_option
+  #     value: yes
+  # breakfast_option:
+  #   type: text
+  #   mappings:
+  #   - type: from_intent
+  #     intent: SelectBreakfastOption
+  #     value: "yes"
+  #   - type: from_intent
+  #     intent: DenyBreakfastOption  # Replace with the actual intent for negative response
+  #     value: "no"
+  num_people:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: num_people
+  payment_mode:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: payment_mode
+  phone:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: phone
+  check_in_date:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: check_in_date
+  # check_out_date:
+  #   type: text
+  #   mappings:
+  #   - type: from_entity
+  #     entity: check_out_date
+forms:
+  simple_user_form:
+    required_slots:
+    - name
+    - phone
+    - check_in_date
+    # - check_out_date
+    - num_people
+    - room_type
+    # - breakfast_option
+    - payment_mode
+  simple_test_form:
+    required_slots:
+    - name
+
 actions:
 - utter_goodbye
-- utter_breakfast_option
-- utter_room_type
-- utter_payment_mode
-- utter_ask_details
+- utter_ask_name
+- utter_submit
 - utter_how_can_i_help
+- utter_ask_breakfast_option
+- utter_room_type
+- utter_ask_payment_mode
+- utter_ask_details
 - utter_confirm_booking
+- action_deactivate_form
 - utter_greet
 - utter_did_that_help
 - utter_iamabot
 - utter_cancellation_details
 - utter_confirm_cancellation
 - utter_hotel_info
+- utter_user_slots
+- validate_simple_user_form
+- utter_slots_values
+- utter_ask_phone
+- utter_ask_check_in_date
+- utter_ask_check_out_date
+- utter_ask_num_people
+- utter_ask_user_name
 responses:
   utter_did_that_help:
   - text: Did that help you?
@@ -59,12 +131,25 @@ responses:
   - text: Hi my name is GrandGuideBot, I can help you book your stay.
   - text: Hi I am a hotel booking chatbot, how may I help you?
   utter_ask_details:
-  - text: I will need your Name, Phone number, number of people, check-in and check-out dates in order to do a booking.
-  utter_room_type:
+  - text: I will need few details in order to do a booking. Let's start with your name. 
+  utter_ask_room_type:
   - text: Thanks for the information {name}. Kindly select the room type. We have - deluxe, single and suite.
-  utter_breakfast_option:
-  - text: Would you like to have breakfast included in your package?
-  utter_payment_mode:
+  utter_ask_breakfast_option:
+  - text: Would you like to include breakfast in your booking?
+    # buttons:
+    #   - title: "Yes"
+    #     payload: "/SelectBreakfastOption{\"breakfast_option\": yes}"
+    #   - title: "No"
+    #     payload: "/DenyBreakfastOption{\"breakfast_option\": no}"
+  utter_ask_phone:
+  - text: Enter your 10 digit phone number.
+  utter_ask_check_in_date:
+  - text: Enter check in date. Please enter date in dd/mm/yyyy format.
+  utter_ask_check_out_date:
+  - text: Enter check out date.
+  utter_ask_num_people:
+  - text: You would like to book room for how many people?
+  utter_ask_payment_mode:
   - text: Kindly select your mode of payment. We support - credit and debit cards, PayPal, Gpay and cash.
   utter_cancellation_details:
   - text: In order to cancel your booking, I will need you name and booking id.
@@ -72,6 +157,18 @@ responses:
   - text: Hey {name}, We have cancelled your booking!
   utter_confirm_booking:
   - text: Hey {name}, Your {room_type} room booking is confirmed.!
+  utter_submit:
+  - text: I will now book a room for you!
+  utter_ask_number_of_people:
+  - text: You would like to book room for how many people?
+  utter_user_slots:
+  - text: I will book a room under {name} for {room_type} room.
+  utter_ask_name:
+  - text: I will need few details in order to do a booking. Let's start with your name. What is your name?
+  utter_slots_values:
+  - text: Welcome {name} to GrandHorizon Hotel.
+  utter_test:
+  - text: Test 123.
   utter_hotel_info:
   - text: |-
       Greetings from Grand Horizon in the heart of Delhi!

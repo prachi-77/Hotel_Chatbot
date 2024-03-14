@@ -56,6 +56,7 @@ nlu:
     - Thank You.
     - thank you
     - Thank you so much for your assistance!
+    - thanks
 - intent: ProvideDetails
   examples: |
     - [Prachi](name)
@@ -66,15 +67,17 @@ nlu:
     - [Ryan](name)
     - [Ram](name)
     - [9820066059](phone)
+    - phone number: [9820066059](phone)
     - [1234786543](phone)
-    - [2](quantity)
-    - [1](quantity)
-    - [4](quantity)
-    - [three](quantity)
-    - [04/03/2024](date)
-    - [10/07/2024](date)
-    - [07/11/2024](date)
-    - [10/10/2024](date)
+    - [2 people](num_people)
+    - [1 people(num_people)
+    - [4 people](num_people)
+    - [three people](num_people)
+    - [04/03/2024](check_in_date)
+    - [04/03/2024](check_in_date)
+    - [10/07/2024](check_in_date)
+    - [07/11/2024](check_in_date)
+    - [10/10/2024](check_in_date)
     - [1 day](number_of_nights)
     - [4 days](number_of_nights)
     - [3 days](number_of_nights)
@@ -83,20 +86,23 @@ nlu:
     - [#3434](booking_id)
     - [#77](booking_id)
     - My name is [Raj](name). I'd like to book a room for [2 days](number_of_nights) at your hotel.My phone number is [4536576897](phone).
-    - [Palak](name), [3](quantity) people, [3456785643](phone), [12/12/2025](date)
+    - [Palak](name), [3 people](num_people) people, [3456785643](phone), [12/12/2025](check_in_date)
+    - I'd like to book a room for [2 days](number_of_nights) at your hotel.
+    - James
 - intent: BookRoom
   examples: |
-    - I'd like to book a room for [2 days](number_of_nights) at your hotel.
-    - Can you help me reserve a room for [12/04/2024](date) at your hotel?
-    - I'm interested in staying at your hotel from [01/01/2025](date) to [03/01/2025](date).
+    - I'd like to book a room for at your hotel.
+    - Can you help me reserve a room for [12/04/2024](check_in_date) at your hotel?
+    - I'm interested in staying at your hotel from [01/01/2025](check_in_date) to [03/01/2025](check_in_date).
     - What are the available rooms for [31/12/2026](date) at your hotel?"
-    - I need a room for [2](quantity) people from [25/12/2025](date) to [05/01/2026](date).
-    - Do you have any vacancies for [11/11/2011](date)?
-    - I'm planning a trip and would like to book a room at your hotel for [02/06/2023](date).
+    - I need a room for [2 people](num_people)  from [25/12/2025](check_in_date) to [05/01/2026](check_in_date).
+    - Do you have any vacancies for [11/11/2011](check_in_date)?
+    - I'm planning a trip and would like to book a room at your hotel for [02/06/2023](check_in_date).
     - Could you assist me with making a reservation for a room?
-    - I'd like to check the availability for a room from [25/09/2020](date) to [27/09/2020](date).
-    - What types of rooms do you have available for [07/07/1997](date)?
+    - I'd like to check the availability for a room from [25/09/2020](check_in_date) to [27/09/2020](check_in_date).
+    - What types of rooms do you have available for [07/07/1997](check_in_date)?
     - I would like to book a room at your hotel.
+    - I want to book a hotel room.
 - intent: SelectRoomType
   examples: |
     - I'd like to select [deluxe](room_type) room.
@@ -105,7 +111,6 @@ nlu:
     - [deluxe](room_type)
     - [single](room_type)
     - [suite](room_type)
-    - [single](room_type)
 - intent: CancelBooking
   examples: |
     - I need to cancel my reservation.
@@ -120,12 +125,12 @@ nlu:
     - Due to unforeseen circumstances, I need to cancel my booking. It's under [Alex](name).
 - intent: SelectPaymentMethod
   examples: |
-    - Credit card
-    - credit card
-    - debit card
-    - Debit card
-    - Gpay
-    - PayPal
+    - [Credit card](payment_mode)
+    - [credit card](payment_mode)
+    - [debit card](payment_mode)
+    - [Debit card](payment_mode)
+    - [Gpay](payment_mode)
+    - [PayPal](payment_mode)
     - I would like to pay with [debit card](payment_mode).
     - I will make payment using my [credit card](payment_mode).
     - I would like to use [PayPal](payment_mode).
@@ -133,29 +138,21 @@ nlu:
     - I would like to use [Gpay](payment_mode).
     - I prefer to pay in [cash](payment_mode) when I arrive for my reservation.
     - I would like to pay with my [credit card](payment_mode).
+
+- intent: DenyBreakfastOption
+  examples: |
+    - No[breakfast_option]
+    - No, thanks
+    - I don't want breakfast
+    - no[breakfast_option]
 - intent: SelectBreakfastOption
   examples: |
-    - With breakfast.
-    - Without breakfast.
-    - Include it.
-    - Don't' include.
-    - No need.
-    - Nope.
-    - Yes,please !
-    - Yes.
-    - No.
-    - Yes
-    - No
-    - I would like to include breakfast in my booking, please.
-    - Could you confirm if breakfast is included in the booking package?
-    - Is breakfast part of the booking, or is it an optional add-on?
-    - I'd prefer a booking package that includes breakfast.
-    - Can you provide information on whether breakfast is complimentary with the reservation?
-    - I want to make sure that breakfast is added to my booking.
-    - Is there an option to include breakfast in the room rate?
-    - I'd like to opt for a booking that does not include breakfast.
-    - Could you check if the room rate I'm considering covers breakfast?
-    - I prefer a package without breakfast included. Is that possible?
+    - Yes[breakfast_option]
+    - Sure
+    - yes[breakfast_option]
+    - no[breakfast_option]
+    - No[breakfast_option]
+
 - intent: GeneralInformation
   examples: |
     - What are the available amenities at your hotel?
@@ -190,3 +187,11 @@ nlu:
     - Could you provide details about the wellness services, like yoga classes or meditation sessions?
     - Is there a concierge service available to assist with local recommendations and bookings?
     - I'd like to know more about the leisure options, such as any sports facilities or outdoor activities.
+
+- intent: ProvideName
+  examples: |
+    - Take my name.
+    - Store my name.
+    - My name is Palak(name).
+    - My name is John(name).
+
