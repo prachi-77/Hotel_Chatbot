@@ -203,43 +203,6 @@ class SimpleUserForm(FormValidationAction):
                 return [SlotSet("requested_slot", slot)]
         return None
 
-   
-
-    
-
-    
-    
-  
-    def validate_payment_mode(
-        self,
-        slot_value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        """Validate check_in_date value."""
-        if slot_value not in ['credit card','debot card']:
-            dispatcher.utter_message(
-                text=f"Invalid pay,ent mode."
-            )
-            return {"payment_mode": None}
-        dispatcher.utter_message(text=f"OK! You want to book a {slot_value} cash.")
-        return [SlotSet("requested_slot", None)]
-        # return[SlotSet(SlotSet("name", None),
-        #                SlotSet("phone", None),
-        #                SlotSet("check_in_date", None),
-        #                SlotSet("num_people", None),
-        #                SlotSet("room_type", None),
-        #                SlotSet("payment_mode", None))]
-
-    def validate(self, dispatcher, tracker, domain):
-        if tracker.latest_message['intent']['name'] == "SelectPaymentMethod":
-            dispatcher.utter_message(
-                text=f"exiting custom form. byebye."
-            )
-            return None  # Empty list signals form completion
-        else:
-            return super().validate(dispatcher, tracker, domain)
 
     def submit(
         self,
