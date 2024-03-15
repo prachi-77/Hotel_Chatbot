@@ -1,3 +1,6 @@
+#Setup
+Use Python 3.8 and refer https://learning.rasa.com/installation/ for installation
+
 # Hotel Booking Chatbot
 This project presents the development and implementation of a hotel booking chatbot leveraging the open-source framework Rasa NLU https://learning.rasa.com/conversational-ai-with-rasa/introduction-to-rasa/. The chatbot is directed towards users who are seeking assistance and information related to hotel bookings. This includes individuals looking to book hotel stays, inquire about existing reservations, or gather 
 general information about the hotel's services and facilities. 
