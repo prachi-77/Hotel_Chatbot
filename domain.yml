@@ -26,6 +26,7 @@ entities:
 - number_of_nights
 - booking_id
 - breakfast_option
+- stay_duration
 
 slots:
   name:
@@ -38,21 +39,14 @@ slots:
     mappings:
     - type: from_entity
       entity: room_type
-  # breakfast_option:
-  #   type: text
-  #   mappings:
-  #   - type: from_entity
-  #     entity: breakfast_option
-  #     value: yes
-  # breakfast_option:
-  #   type: text
-  #   mappings:
-  #   - type: from_intent
-  #     intent: SelectBreakfastOption
-  #     value: "yes"
-  #   - type: from_intent
-  #     intent: DenyBreakfastOption  # Replace with the actual intent for negative response
-  #     value: "no"
+  breakfast_option:
+    type: categorical
+    mappings:
+    - type: from_entity
+      entity: breakfast_option
+    values:
+      - Yes
+      - No
   num_people:
     type: text
     mappings:
@@ -73,21 +67,21 @@ slots:
     mappings:
     - type: from_entity
       entity: check_in_date
-  # check_out_date:
-  #   type: text
-  #   mappings:
-  #   - type: from_entity
-  #     entity: check_out_date
+  stay_duration:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: stay_duration
 forms:
   simple_user_form:
     required_slots:
     - name
     - phone
     - check_in_date
-    # - check_out_date
+    - stay_duration
     - num_people
     - room_type
-    # - breakfast_option
+    - breakfast_option
     - payment_mode
   simple_test_form:
     required_slots:
@@ -133,20 +127,22 @@ responses:
   utter_ask_details:
   - text: I will need few details in order to do a booking. Let's start with your name. 
   utter_ask_room_type:
-  - text: Thanks for the information {name}. Kindly select the room type. We have - deluxe, single and suite.
+  - text: Next, kindly select the room type. We have - deluxe, single and suite.
   utter_ask_breakfast_option:
-  - text: Would you like to include breakfast in your booking?
-    # buttons:
-    #   - title: "Yes"
-    #     payload: "/SelectBreakfastOption{\"breakfast_option\": yes}"
-    #   - title: "No"
-    #     payload: "/DenyBreakfastOption{\"breakfast_option\": no}"
+  - text: Would you like to include breakfast in your package?
+    buttons:
+    - title: Yes
+      payload: /breakfast_yes
+    - title: No
+      payload: /breakfast_no
   utter_ask_phone:
-  - text: Enter your 10 digit phone number.
+  - text: Hey {name} ! Enter your 10 digit phone number.
   utter_ask_check_in_date:
   - text: Enter check in date. Please enter date in dd/mm/yyyy format.
   utter_ask_check_out_date:
   - text: Enter check out date.
+  utter_ask_stay_duration:
+  - text: You would like to stay for how many days at our hotel ?
   utter_ask_num_people:
   - text: You would like to book room for how many people?
   utter_ask_payment_mode:

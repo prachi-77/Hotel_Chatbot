@@ -1,5 +1,7 @@
 version: "3.1"
 nlu:
+
+
 - intent: greet
   examples: |
     - hey
@@ -66,6 +68,15 @@ nlu:
     - [Chad](name)
     - [Ryan](name)
     - [Ram](name)
+    - [Emma](name)
+    - [Sophia](name)
+    - [Liam](name)
+    - [Olivia](name)
+    - [Noah](name)
+    - [Ava](name)
+    - [William](name)
+    - [Isabella](name)
+    - [John](name)
     - [9820066059](phone)
     - phone number: [9820066059](phone)
     - [1234786543](phone)
@@ -78,20 +89,40 @@ nlu:
     - [10/07/2024](check_in_date)
     - [07/11/2024](check_in_date)
     - [10/10/2024](check_in_date)
-    - [1 day](number_of_nights)
-    - [4 days](number_of_nights)
-    - [3 days](number_of_nights)
+    - [1 day](stay_duration)
+    - [3 days](stay_duration)
+    - [Raj](name)
     - [#12](booking_id)
     - [#1234](booking_id)
     - [#3434](booking_id)
     - [#77](booking_id)
-    - My name is [Raj](name). I'd like to book a room for [2 days](number_of_nights) at your hotel.My phone number is [4536576897](phone).
-    - [Palak](name), [3 people](num_people) people, [3456785643](phone), [12/12/2025](check_in_date)
-    - I'd like to book a room for [2 days](number_of_nights) at your hotel.
-    - James
+    - [4536576897](phone)
+    - [James](name)
+    - [3 people](num_people) people
+    - [3456785643](phone)
+    - [12/12/2025](check_in_date)
+    - I'll stay for [3 days](stay_duration)
+    - I plan to stay for [5 nights](stay_duration)
+    - [1 week](stay_duration)
+    - [2 nights](stay_duration)
+    - [4 days](stay_duration)
+    - I'll be staying for [7 days](stay_duration)
+    - My stay duration is [10 nights](stay_duration)
+    - [3](stay_duration)
+    - [5](stay_duration)
+    - [2 weeks](stay_duration)
 - intent: BookRoom
   examples: |
     - I'd like to book a room for at your hotel.
+    - Book a room
+    -  Reserve a room
+    -  I want to book a room
+    -  Can I book a room?
+    -  Room booking
+    -  Room reservation
+    -  How to reserve a room?
+    -  Book accommodation
+    -  Make a reservation
     - Can you help me reserve a room for [12/04/2024](check_in_date) at your hotel?
     - I'm interested in staying at your hotel from [01/01/2025](check_in_date) to [03/01/2025](check_in_date).
     - What are the available rooms for [31/12/2026](date) at your hotel?"
@@ -195,3 +226,8 @@ nlu:
     - My name is Palak(name).
     - My name is John(name).
 
+entity_regexes:
+  - name: check_in_date
+    regex: "check_in (.*)"
+  - name: check_out_date
+    regex: "check_out (.*)"

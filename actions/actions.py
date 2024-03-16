@@ -14,6 +14,40 @@ from rasa_sdk.types import DomainDict
 import re
 ALLOWED_ROOM_TYPES = ["deluxe", "single", "suite"]
 
+def get_no_of_rooms(slot_val):
+    ppl_digit = [int(s) for s in slot_val.split() if s.isdigit()][0]
+    no_of_rooms = 0
+    text = 'rooms'
+    if ppl_digit%2 == 0:
+        no_of_rooms = (int(ppl_digit/2))
+            
+    else:
+        no_of_rooms = int(ppl_digit/2)
+        no_of_rooms +=1
+    text = ['room' if no_of_rooms ==1 else 'rooms']
+    return [no_of_rooms,text[0]]
+
+def extract_duration(value):
+    # Regular expression pattern to match numerical value and unit
+    
+    if value.isdigit() :
+        return int(value)
+    else:
+        pattern = r'(\d+)\s*(day|week|night|nights|weeks)'
+        match = re.match(pattern, value, re.IGNORECASE)
+        if match:
+            # Extract numerical value and unit
+            duration = int(match.group(1))
+            unit = match.group(2).lower()
+            
+            # Convert to standard unit (e.g., days)
+            if unit in ['week', 'weeks']:
+                duration *= 7
+            elif unit in ['night', 'nights']:
+                pass  
+            return duration
+        else:
+            return None  # Return None if no match found
 class ActionConfirmBooking(Action):
 
     def name(self) -> Text:
@@ -53,7 +87,7 @@ class ValidateSimpeUserForm(FormValidationAction):
             return {"name": None}
 
         # Validation passed, set the slot value
-        dispatcher.utter_message(text=f"OK! You want a booking under {value} name.")
+        # dispatcher.utter_message(text=f"Hey {value} !")
         return {"name": value}
 
     def validate_room_type(
@@ -114,7 +148,7 @@ class ValidateSimpeUserForm(FormValidationAction):
 
         # Check if the given date falls within the range
         if not(today <= given_date <= three_months_from_now):
-            error_message = "\033[91mError: You can only book room from today to a maximum of 3 months now. Kindly check your date.\033[0m"
+            error_message = "\033[91mError: You can only book room from today to a maximum of 3 months from now. Kindly check your date.\033[0m"
             dispatcher.utter_message(
                 text=error_message
             )
@@ -122,6 +156,60 @@ class ValidateSimpeUserForm(FormValidationAction):
             return {"check_in_date": None}
         
         return {"check_in_date": slot_value}
+    
+    def validate_stay_duration(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Text]:
+
+        stay_days = extract_duration(slot_value)
+        if stay_days is None:
+            dispatcher.utter_message("Please enter a valid number for stay duration.")
+            return {"stay_duration": None}
+        check_in_date = datetime.strptime(tracker.get_slot("check_in_date"), '%d/%m/%Y')
+        check_out_date = check_in_date + timedelta(days=stay_days)
+        dispatcher.utter_message(f"Your check-out date will be : {check_out_date} ")
+        return {"stay_duration": stay_days}
+       
+            
+
+    def validate_num_people(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        ppl_digit = [int(s) for s in slot_value.split() if s.isdigit()][0]
+        
+        if ppl_digit == 0:
+            error_message = "\033[91mError: Minimum 1 person is required for booking.\033[0m"
+            dispatcher.utter_message(
+                text=error_message
+            )
+            return {"num_people": None}
+        room_info = get_no_of_rooms(slot_value)
+        no_of_rooms = room_info[0]
+        text = room_info[1]
+       
+        dispatcher.utter_message(f"As maximum of 2 people are allowed per room. "
+                                 f"You will have to book {no_of_rooms} {text}. ")
+        return {"num_people": slot_value}
+    
+    def validate_breakfast_option(
+        self,
+        value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        if value.lower() not in ["yes", "no"]:
+            dispatcher.utter_message("Please select either 'Yes' or 'No'.")
+            return {"breakfast_option": None}
+        return {"breakfast_option": value}
 
     def validate_payment_mode(
         self,
@@ -130,7 +218,7 @@ class ValidateSimpeUserForm(FormValidationAction):
         tracker: Tracker,
         domain: DomainDict,
     ) -> Dict[Text, Any]:
-        
+        print("payment",slot_value)
         if slot_value not in ['credit card','debit card','cash','Gpay']:
             error_message = "\033[91mError: Invalid payment mode.\033[0m"
             dispatcher.utter_message(
@@ -143,9 +231,16 @@ class ValidateSimpeUserForm(FormValidationAction):
         room_type = slot_values.get("room_type")
         num_people = slot_values.get("num_people")
         payment_mode = slot_values.get("payment_mode")
-        dispatcher.utter_message(f"Congratulations {name}! "
-                                 f"You have booked a {room_type} room for {num_people}. "
-                                 f"Your payment will be made through {payment_mode}.")
+        room_info = get_no_of_rooms(num_people)
+        no_of_rooms = room_info[0]
+        text = room_info[1]
+        stay_days = extract_duration(slot_values.get("stay_duration"))
+        check_in_date = datetime.strptime(tracker.get_slot("check_in_date"), "%d/%m/%Y")
+        check_out_date = check_in_date + timedelta(days=stay_days)
+        dispatcher.utter_message(f"Congratulations {name}!\n"
+                                 f"You have booked {no_of_rooms} {room_type} {text} for {num_people}.\n"
+                                 f"Check-in Date :  {check_in_date} , Check-out Date : {check_out_date}\n"
+                                 f"Mode of Payment :  {payment_mode}.")
         return []
     def validate(self, dispatcher, tracker, domain):
         if tracker.latest_message['intent']['name'] == "SelectPaymentMethod":
@@ -174,19 +269,20 @@ class SimpleUserForm(FormValidationAction):
         return ["name", 
                 "phone", 
                 "check_in_date",
+                "stay_duration"
                 "num_people",
                 "room_type",
-                # "breakfast_option",
+                "breakfast_option",
                 "payment_mode"]
     def slot_mappings(self) -> Dict[Text, Any]:
         return {
             "name": self.from_entity(entity="name", intent="user_utters_for_name"),
             "phone": self.from_entity(entity="phone", intent="ProvideDetails"),
             "check_in_date": self.from_entity(entity="check_in_date", intent="ProvideDetails"),
-            # "check_out_date": self.from_entity(entity="check_out_date", intent="ProvideDetails"),
+            "stay_duration": self.from_entity(entity="stay_duration", intent="ProvideDetails"),
             "num_people": self.from_entity(entity="number_of_people", intent="ProvideDetails"),
             "room_type": self.from_entity(entity="room_type", intent="SelectRoomType"),
-            # "breakfast_option": self.from_entity(entity="breakfast_option", intent="SelectBreakfastOption"),
+            "breakfast_option": self.from_entity(entity="breakfast_option", intent="SelectBreakfastOption"),
             "payment_mode": self.from_entity(entity="payment_mode", intent="SelectPaymentMethod"),
         }
 
