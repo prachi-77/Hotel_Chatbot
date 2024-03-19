@@ -3,36 +3,36 @@
 
 stories:
 
-- story: basic book stay test
-  steps:
-  - user: |
-      hey
-    intent: greet
-  - action: utter_how_can_i_help
-  - user: |
-      Could you assist me with making a reservation for a room?
-    intent: BookRoom
-  - action: utter_ask_details
-  - user: |
-      Prachi, 2 people, 9820066059, 12/02/2023
-    intent: ProvideDetails
-  - action: utter_room_type
-  - user: |
-      deluxe
-    intent: SelectRoomType
-  - action: utter_breakfast_option
-  - user: |
-       I would like to include breakfast in my booking, please.
-    intent: SelectBreakfastOption
-  - action: utter_payment_mode
-  - user: |
-      I would like to pay with debit card
-    intent: SelectPaymentMethod
-  - action: utter_confirm_booking
-  - user: |
-      thank you
-    intent: thanks
-  - action : utter_goodbye
+# - story: basic book stay test
+#   steps:
+#   - user: |
+#       hey
+#     intent: greet
+#   - action: utter_how_can_i_help
+#   - user: |
+#       Could you assist me with making a reservation for a room?
+#     intent: BookRoom
+#   - action: utter_ask_details
+#   - user: |
+#       Prachi, 2 people, 9820066059, 12/02/2023
+#     intent: ProvideDetails
+#   - action: utter_room_type
+#   - user: |
+#       deluxe
+#     intent: SelectRoomType
+#   - action: utter_breakfast_option
+#   - user: |
+#        I would like to include breakfast in my booking, please.
+#     intent: SelectBreakfastOption
+#   - action: utter_payment_mode
+#   - user: |
+#       I would like to pay with debit card
+#     intent: SelectPaymentMethod
+#   - action: utter_confirm_booking
+#   - user: |
+#       thank you
+#     intent: thanks
+#   - action : utter_goodbye
 
 - story : test cancellation
   steps:
@@ -45,10 +45,151 @@ stories:
     intent: CancelBooking
   - action: utter_cancellation_details
   - user: |
-      John, #1234
+      [John](name), [#1234](booking_id)
     intent: ProvideDetails
+    entities:
+      - name: John
+      - booking_id: #1234
   - action: utter_confirm_cancellation
   - user: |
       thanks a lot
     intent: thanks
   - action : utter_goodbye
+
+# - story: basic book stay test
+#   steps:
+#   - intent: greet
+#   - action: utter_how_can_i_help
+#   - user: |
+#       I would like book a room.
+#   - intent: BookRoom
+#   - action: simple_user_form
+#   - active_loop: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - user: |
+#       [Joe](name)
+#   - intent: ProvideDetails
+#   - action: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: phone
+#   - user: |
+#       [8765789043](phone)
+#   - intent: ProvideDetails
+#   - action: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: check_in_date
+#   - user: |
+#       [19/03/2024](check_in_date)
+#   - intent: ProvideDetails
+#   - action: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: stay_duration
+#   - user: |
+#       [3 days]
+#   - intent: ProvideDetails
+#   - action: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: num_people
+#   - user: |
+#       [4 people]
+#   - intent: ProvideDetails
+#   - action: simple_user_form
+#   - slot_was_set:
+#     - requested_slot: room_type
+#   - user: |
+#       [single]
+#   - intent: SelectRoomType
+#   - slot_was_set:
+#     - requested_slot: payment_mode
+#   - user: |
+#       cash
+#   - intent: SelectPaymentMethod
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_default_fallback
+
+
+
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_how_can_i_help
+  - intent: BookRoom
+  - action: simple_user_form
+  - active_loop: simple_user_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: ProvideDetails
+    entities:
+    - name: Joe
+  - slot_was_set:
+    - name: Joe
+  - action: simple_user_form
+  - slot_was_set:
+    - name: Joe
+  - slot_was_set:
+    - requested_slot: phone
+  - intent: ProvideDetails
+    entities:
+    - phone: '8765789043'
+  - slot_was_set:
+    - phone: '8765789043'
+  - action: simple_user_form
+  - slot_was_set:
+    - phone: '8765789043'
+  - slot_was_set:
+    - requested_slot: check_in_date
+  - intent: ProvideDetails
+    entities:
+    - check_in_date: 19/03/2024
+  - slot_was_set:
+    - check_in_date: 19/03/2024
+  - action: simple_user_form
+  - slot_was_set:
+    - check_in_date: 19/03/2024
+  - slot_was_set:
+    - requested_slot: stay_duration
+  - intent: ProvideDetails
+    entities:
+    - stay_duration: 3 days
+  - slot_was_set:
+    - stay_duration: 3 days
+  - action: simple_user_form
+  - slot_was_set:
+    - stay_duration: 3
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: ProvideDetails
+    entities:
+    - num_people: 4 people
+  - slot_was_set:
+    - num_people: 4 people
+  - action: simple_user_form
+  - slot_was_set:
+    - num_people: 4 people
+  - slot_was_set:
+    - requested_slot: room_type
+  - intent: SelectRoomType
+    entities:
+    - room_type: single
+  - slot_was_set:
+    - room_type: single
+  - action: simple_user_form
+  - slot_was_set:
+    - room_type: single
+  - slot_was_set:
+    - requested_slot: payment_mode
+  - intent: SelectPaymentMethod
+    entities:
+    - payment_mode: cash
+  - slot_was_set:
+    - payment_mode: cash
+  - action: simple_user_form
+  - slot_was_set:
+    - payment_mode: cash
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_default_fallback

@@ -1,0 +1,20 @@
+[
+  {
+    "text": "John, #1234",
+    "entities": [
+      {
+        "start": 0,
+        "end": 4,
+        "value": "John",
+        "entity": "name"
+      },
+      {
+        "start": 6,
+        "end": 11,
+        "value": "#1234",
+        "entity": "booking_id"
+      }
+    ],
+    "predicted_entities": []
+  }
+]

@@ -1,7 +1,5 @@
 version: "3.1"
 nlu:
-
-
 - intent: greet
   examples: |
     - hey
@@ -85,7 +83,6 @@ nlu:
     - [4 people](num_people)
     - [three people](num_people)
     - [04/03/2024](check_in_date)
-    - [04/03/2024](check_in_date)
     - [10/07/2024](check_in_date)
     - [07/11/2024](check_in_date)
     - [10/10/2024](check_in_date)
@@ -111,18 +108,23 @@ nlu:
     - [3](stay_duration)
     - [5](stay_duration)
     - [2 weeks](stay_duration)
+    - [Joe](name)
+    - [8765789043](phone)
+    - [19/03/2024](check_in_date)
+    - [3 days](stay_duration)
+    - [4 people](num_people)
 - intent: BookRoom
   examples: |
     - I'd like to book a room for at your hotel.
     - Book a room
-    -  Reserve a room
-    -  I want to book a room
-    -  Can I book a room?
-    -  Room booking
-    -  Room reservation
-    -  How to reserve a room?
-    -  Book accommodation
-    -  Make a reservation
+    - Reserve a room
+    - I want to book a room
+    - Can I book a room?
+    - Room booking
+    - Room reservation
+    - How to reserve a room?
+    - Book accommodation
+    - Make a reservation
     - Can you help me reserve a room for [12/04/2024](check_in_date) at your hotel?
     - I'm interested in staying at your hotel from [01/01/2025](check_in_date) to [03/01/2025](check_in_date).
     - What are the available rooms for [31/12/2026](date) at your hotel?"
@@ -134,6 +136,7 @@ nlu:
     - What types of rooms do you have available for [07/07/1997](check_in_date)?
     - I would like to book a room at your hotel.
     - I want to book a hotel room.
+    - book a room
 - intent: SelectRoomType
   examples: |
     - I'd like to select [deluxe](room_type) room.
@@ -142,6 +145,7 @@ nlu:
     - [deluxe](room_type)
     - [single](room_type)
     - [suite](room_type)
+    - [single](room_type)
 - intent: CancelBooking
   examples: |
     - I need to cancel my reservation.
@@ -169,7 +173,6 @@ nlu:
     - I would like to use [Gpay](payment_mode).
     - I prefer to pay in [cash](payment_mode) when I arrive for my reservation.
     - I would like to pay with my [credit card](payment_mode).
-
 - intent: DenyBreakfastOption
   examples: |
     - No[breakfast_option]
@@ -178,12 +181,14 @@ nlu:
     - no[breakfast_option]
 - intent: SelectBreakfastOption
   examples: |
-    - Yes[breakfast_option]
-    - Sure
-    - yes[breakfast_option]
-    - no[breakfast_option]
-    - No[breakfast_option]
-
+    - Yes
+    - yes
+    - sure
+    - yeah
+    - No
+    - no
+    - nah
+    - I don't want breakfast
 - intent: GeneralInformation
   examples: |
     - What are the available amenities at your hotel?
@@ -218,16 +223,9 @@ nlu:
     - Could you provide details about the wellness services, like yoga classes or meditation sessions?
     - Is there a concierge service available to assist with local recommendations and bookings?
     - I'd like to know more about the leisure options, such as any sports facilities or outdoor activities.
-
 - intent: ProvideName
   examples: |
     - Take my name.
     - Store my name.
     - My name is Palak(name).
     - My name is John(name).
-
-entity_regexes:
-  - name: check_in_date
-    regex: "check_in (.*)"
-  - name: check_out_date
-    regex: "check_out (.*)"

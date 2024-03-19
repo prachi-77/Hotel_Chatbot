@@ -5,13 +5,19 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "utter_confirm_booking": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
+  "utter_how_can_i_help": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 2
+  },
+  "SelectPaymentMethod": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
     "support": 1
   },
-  "utter_how_can_i_help": {
+  "greet": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
@@ -23,71 +29,11 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "utter_payment_mode": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "ProvideDetails": {
+  "action_listen": {
     "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "utter_breakfast_option": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "utter_ask_details": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "SelectPaymentMethod": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "utter_confirm_cancellation": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "greet": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
-  },
-  "None": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 7
-  },
-  "utter_cancellation_details": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1
-  },
-  "utter_room_type": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 1
-  },
-  "utter_goodbye": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 2
+    "recall": 0.9230769230769231,
+    "f1-score": 0.9600000000000001,
+    "support": 13
   },
   "BookRoom": {
     "precision": 1.0,
@@ -95,46 +41,82 @@
     "f1-score": 1.0,
     "support": 1
   },
-  "SelectBreakfastOption": {
+  "simple_user_form": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 8
+  },
+  "[#1234](booking_id)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 1
   },
-  "action_listen": {
+  "[John](name)": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 11
+    "support": 1
+  },
+  "utter_confirm_cancellation": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
   },
   "thanks": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 2
+    "support": 1
   },
-  "micro avg": {
+  "utter_goodbye": {
     "precision": 1.0,
-    "recall": 0.7,
-    "f1-score": 0.8235294117647058,
-    "support": 40
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
   },
+  "action_default_fallback": {
+    "precision": 0.5,
+    "recall": 1.0,
+    "f1-score": 0.6666666666666666,
+    "support": 1
+  },
+  "ProvideDetails": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6
+  },
+  "utter_cancellation_details": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 1
+  },
+  "accuracy": 0.9761904761904762,
   "macro avg": {
-    "precision": 0.6842105263157895,
-    "recall": 0.6842105263157895,
-    "f1-score": 0.6842105263157895,
-    "support": 40
+    "precision": 0.96875,
+    "recall": 0.9951923076923077,
+    "f1-score": 0.9766666666666667,
+    "support": 42
   },
   "weighted avg": {
-    "precision": 0.7,
-    "recall": 0.7,
-    "f1-score": 0.7,
-    "support": 40
+    "precision": 0.9880952380952381,
+    "recall": 0.9761904761904762,
+    "f1-score": 0.9796825396825397,
+    "support": 42
   },
-  "accuracy": 0.7,
+  "micro avg": {
+    "precision": 0.9761904761904762,
+    "recall": 0.9761904761904762,
+    "f1-score": 0.9761904761904762,
+    "support": 42
+  },
   "conversation_accuracy": {
-    "accuracy": 0.0,
-    "correct": 0,
+    "accuracy": 0.5,
+    "correct": 1,
     "with_warnings": 0,
     "total": 2
   }

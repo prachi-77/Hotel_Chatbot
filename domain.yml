@@ -3,31 +3,29 @@ intents:
 - BookRoom
 - BotIdentity
 - CancelBooking
+- DenyBreakfastOption
 - EnquireAboutServices
 - GeneralInformation
 - ProvideDetails
+- ProvideName
 - SelectBreakfastOption
 - SelectPaymentMethod
 - SelectRoomType
 - goodbye
 - greet
 - thanks
-- DenyBreakfastOption
-- ProvideName
-
 entities:
-- phone
+- stay_duration
 - check_in_date
+- room_type
+- name
+- phone
+- num_people
 - check_out_date
 - payment_mode
-- room_type
-- num_people
-- name
 - number_of_nights
 - booking_id
 - breakfast_option
-- stay_duration
-
 slots:
   name:
     type: text
@@ -39,14 +37,6 @@ slots:
     mappings:
     - type: from_entity
       entity: room_type
-  breakfast_option:
-    type: categorical
-    mappings:
-    - type: from_entity
-      entity: breakfast_option
-    values:
-      - Yes
-      - No
   num_people:
     type: text
     mappings:
@@ -81,17 +71,15 @@ forms:
     - stay_duration
     - num_people
     - room_type
-    - breakfast_option
     - payment_mode
   simple_test_form:
     required_slots:
     - name
-
 actions:
+- utter_how_can_i_help
 - utter_goodbye
 - utter_ask_name
 - utter_submit
-- utter_how_can_i_help
 - utter_ask_breakfast_option
 - utter_room_type
 - utter_ask_payment_mode
@@ -125,16 +113,11 @@ responses:
   - text: Hi my name is GrandGuideBot, I can help you book your stay.
   - text: Hi I am a hotel booking chatbot, how may I help you?
   utter_ask_details:
-  - text: I will need few details in order to do a booking. Let's start with your name. 
+  - text: I will need few details in order to do a booking. Let's start with your name.
   utter_ask_room_type:
   - text: Next, kindly select the room type. We have - deluxe, single and suite.
   utter_ask_breakfast_option:
   - text: Would you like to include breakfast in your package?
-    buttons:
-    - title: Yes
-      payload: /breakfast_yes
-    - title: No
-      payload: /breakfast_no
   utter_ask_phone:
   - text: Hey {name} ! Enter your 10 digit phone number.
   utter_ask_check_in_date:

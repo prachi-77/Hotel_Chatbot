@@ -29,8 +29,9 @@ def get_no_of_rooms(slot_val):
 
 def extract_duration(value):
     # Regular expression pattern to match numerical value and unit
-    
-    if value.isdigit() :
+    if isinstance(value,int):
+        return value
+    elif value.isdigit() :
         return int(value)
     else:
         pattern = r'(\d+)\s*(day|week|night|nights|weeks)'
@@ -199,17 +200,17 @@ class ValidateSimpeUserForm(FormValidationAction):
                                  f"You will have to book {no_of_rooms} {text}. ")
         return {"num_people": slot_value}
     
-    def validate_breakfast_option(
-        self,
-        value: Any,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: DomainDict,
-    ) -> Dict[Text, Any]:
-        if value.lower() not in ["yes", "no"]:
-            dispatcher.utter_message("Please select either 'Yes' or 'No'.")
-            return {"breakfast_option": None}
-        return {"breakfast_option": value}
+    # def validate_breakfast_option(
+    #     self,
+    #     value: Any,
+    #     dispatcher: CollectingDispatcher,
+    #     tracker: Tracker,
+    #     domain: DomainDict,
+    # ) -> Dict[Text, Any]:
+    #     if value.lower() not in ["yes", "no"]:
+    #         dispatcher.utter_message("Please select either 'Yes' or 'No'.")
+    #         return {"breakfast_option": None}
+    #     return {"breakfast_option": value}
 
     def validate_payment_mode(
         self,
@@ -272,7 +273,7 @@ class SimpleUserForm(FormValidationAction):
                 "stay_duration"
                 "num_people",
                 "room_type",
-                "breakfast_option",
+                # "breakfast_option",
                 "payment_mode"]
     def slot_mappings(self) -> Dict[Text, Any]:
         return {
@@ -282,7 +283,7 @@ class SimpleUserForm(FormValidationAction):
             "stay_duration": self.from_entity(entity="stay_duration", intent="ProvideDetails"),
             "num_people": self.from_entity(entity="number_of_people", intent="ProvideDetails"),
             "room_type": self.from_entity(entity="room_type", intent="SelectRoomType"),
-            "breakfast_option": self.from_entity(entity="breakfast_option", intent="SelectBreakfastOption"),
+            # "breakfast_option": self.from_entity(entity="breakfast_option", intent="SelectBreakfastOption"),
             "payment_mode": self.from_entity(entity="payment_mode", intent="SelectPaymentMethod"),
         }
 

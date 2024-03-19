@@ -1,28 +1,98 @@
 version: "3.1"
 stories:
-- story: basic book stay test (.\tests\test_stories.yml)
+- story: interactive_story_1 (.\tests\test_stories.yml)
   steps:
   - intent: greet
   - action: utter_how_can_i_help
   - intent: BookRoom
-  - action: utter_ask_details
-  - intent: ProvideDetails  # predicted: ProvideDetails: [Prachi](name), [2](quantity) people, [9820066059](quantity), [12/02/2023](date)
-  - action: utter_room_type  # predicted: action_default_fallback
-  - intent: SelectRoomType  # predicted: SelectRoomType: [deluxe](room_type)
-  - action: utter_breakfast_option  # predicted: action_default_fallback after action_unlikely_intent
-  - intent: SelectBreakfastOption
-  - action: utter_payment_mode  # predicted: action_default_fallback after action_unlikely_intent
-  - intent: SelectPaymentMethod  # predicted: SelectPaymentMethod: I would like to pay with [debit card](payment_mode)
-  - action: utter_confirm_booking  # predicted: action_default_fallback after action_unlikely_intent
-  - intent: thanks
-  - action: utter_goodbye  # predicted: action_unlikely_intent
-- story: test cancellation (.\tests\test_stories.yml)
-  steps:
-  - intent: greet
-  - action: utter_how_can_i_help
-  - intent: CancelBooking
-  - action: utter_cancellation_details
-  - intent: ProvideDetails  # predicted: ProvideDetails: John, [#1234](booking_id)
-  - action: utter_confirm_cancellation  # predicted: action_default_fallback
-  - intent: thanks
-  - action: utter_goodbye
+  - action: simple_user_form
+  - active_loop: simple_user_form
+  - slot_was_set:
+    - requested_slot: name
+  - intent: ProvideDetails
+    entities:
+    - name: Joe
+  - slot_was_set:
+    - name: Joe
+  - slot_was_set:
+    - name: Joe
+  - action: simple_user_form
+  - slot_was_set:
+    - name: Joe
+  - slot_was_set:
+    - requested_slot: phone
+  - intent: ProvideDetails
+    entities:
+    - phone: '8765789043'
+  - slot_was_set:
+    - phone: '8765789043'
+  - slot_was_set:
+    - phone: '8765789043'
+  - action: simple_user_form
+  - slot_was_set:
+    - phone: '8765789043'
+  - slot_was_set:
+    - requested_slot: check_in_date
+  - intent: ProvideDetails
+    entities:
+    - check_in_date: 19/03/2024
+  - slot_was_set:
+    - check_in_date: 19/03/2024
+  - slot_was_set:
+    - check_in_date: 19/03/2024
+  - action: simple_user_form
+  - slot_was_set:
+    - check_in_date: 19/03/2024
+  - slot_was_set:
+    - requested_slot: stay_duration
+  - intent: ProvideDetails
+    entities:
+    - stay_duration: 3 days
+  - slot_was_set:
+    - stay_duration: 3 days
+  - slot_was_set:
+    - stay_duration: 3 days
+  - action: simple_user_form
+  - slot_was_set:
+    - stay_duration: 3
+  - slot_was_set:
+    - requested_slot: num_people
+  - intent: ProvideDetails
+    entities:
+    - num_people: 4 people
+  - slot_was_set:
+    - num_people: 4 people
+  - slot_was_set:
+    - num_people: 4 people
+  - action: simple_user_form
+  - slot_was_set:
+    - num_people: 4 people
+  - slot_was_set:
+    - requested_slot: room_type
+  - intent: SelectRoomType
+    entities:
+    - room_type: single
+  - slot_was_set:
+    - room_type: single
+  - slot_was_set:
+    - room_type: single
+  - action: simple_user_form
+  - slot_was_set:
+    - room_type: single
+  - slot_was_set:
+    - requested_slot: payment_mode
+  - intent: SelectPaymentMethod
+    entities:
+    - payment_mode: cash
+  - slot_was_set:
+    - payment_mode: cash
+  - slot_was_set:
+    - payment_mode: cash
+  - action: simple_user_form
+  - slot_was_set:
+    - payment_mode: cash
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback

@@ -1,10 +1,10 @@
 [
   {
-    "text": "no",
-    "intent": "deny",
+    "text": "I don't want breakfast",
+    "intent": "DenyBreakfastOption",
     "intent_prediction": {
       "name": "SelectBreakfastOption",
-      "confidence": 0.6581361293792725
+      "confidence": 0.923092246055603
     }
   }
 ]

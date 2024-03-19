@@ -1,51 +1,25 @@
 {
-  "ProvideDetails": {
+  "ProvideName": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 25,
+    "support": 4,
     "confused_with": {}
   },
-  "EnquireAboutServices": {
+  "DenyBreakfastOption": {
     "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 18,
-    "confused_with": {}
-  },
-  "BotIdentity": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
-  "BookRoom": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 10,
-    "confused_with": {}
-  },
-  "SelectRoomType": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 6,
-    "confused_with": {}
-  },
-  "SelectPaymentMethod": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 12,
-    "confused_with": {}
+    "recall": 0.75,
+    "f1-score": 0.8571428571428571,
+    "support": 4,
+    "confused_with": {
+      "SelectBreakfastOption": 1
+    }
   },
   "SelectBreakfastOption": {
-    "precision": 1.0,
+    "precision": 0.8888888888888888,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 21,
+    "f1-score": 0.9411764705882353,
+    "support": 8,
     "confused_with": {}
   },
   "goodbye": {
@@ -55,11 +29,25 @@
     "support": 22,
     "confused_with": {}
   },
-  "greet": {
+  "BotIdentity": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "SelectPaymentMethod": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 13,
+    "confused_with": {}
+  },
+  "greet": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 14,
     "confused_with": {}
   },
   "CancelBooking": {
@@ -69,13 +57,6 @@
     "support": 10,
     "confused_with": {}
   },
-  "thanks": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 7,
-    "confused_with": {}
-  },
   "GeneralInformation": {
     "precision": 1.0,
     "recall": 1.0,
@@ -83,23 +64,58 @@
     "support": 12,
     "confused_with": {}
   },
-  "accuracy": 1.0,
-  "macro avg": {
+  "BookRoom": {
     "precision": 1.0,
     "recall": 1.0,
     "f1-score": 1.0,
-    "support": 161
+    "support": 22,
+    "confused_with": {}
+  },
+  "thanks": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 8,
+    "confused_with": {}
+  },
+  "EnquireAboutServices": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 18,
+    "confused_with": {}
+  },
+  "SelectRoomType": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "ProvideDetails": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 52,
+    "confused_with": {}
+  },
+  "accuracy": 0.9949494949494949,
+  "macro avg": {
+    "precision": 0.9920634920634921,
+    "recall": 0.9821428571428571,
+    "f1-score": 0.985594237695078,
+    "support": 198
   },
   "weighted avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 161
+    "precision": 0.9955106621773289,
+    "recall": 0.9949494949494949,
+    "f1-score": 0.9947372888549358,
+    "support": 198
   },
   "micro avg": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 161
+    "precision": 0.9949494949494949,
+    "recall": 0.9949494949494949,
+    "f1-score": 0.9949494949494949,
+    "support": 198
   }
 }
