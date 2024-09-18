@@ -1,8 +1,12 @@
 **Setup**
-Use Python 3.8 and refer https://learning.rasa.com/installation/ for installation
+Use Python 3.8 and refer https://learning.rasa.com/installation/ for installation.
+
+Refer **Installation Manual** attached in this git repo for detailed steps.
 
 **Run below commands in separate windows after setup**
+
 $ rasa shell ( to open Rasa bot for conversations)
+
 $ rasa run actions (to run Rasa custom actions)
 
 # Hotel Booking Chatbot
@@ -38,3 +42,20 @@ times, and available facilities.
 restaurants, spas, swimming pools, and gaming zones.
 10. **ThankYou Intent:** User expresses gratitude or thanks after receiving assistance.
 11. **BotIdentity Intent:** User asks the bot if it is a human or a bot, or inquires about the bot's identity
+
+
+**Bot Screenhots**
+
+**Case 1: USER INTENTS TO BOOK A ROOM**
+
+<img width="599" alt="image" src="https://github.com/user-attachments/assets/a3ba8fc1-44de-4b1f-8cd0-d3c8c85608cd">
+
+**Case 2: USER INTENTS TO CANCEL THEIR EXISTING BOOKING**
+
+<img width="564" alt="image" src="https://github.com/user-attachments/assets/0c626e74-ec20-4df0-a2bb-8e5ecdd2191b">
+
+**Case 3: USER SEEKS HOTEL INFORMATION**
+
+<img width="536" alt="image" src="https://github.com/user-attachments/assets/4395e4fd-c941-4fbf-a0c2-70d39f0e480d">
+
+
